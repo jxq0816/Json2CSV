@@ -5,6 +5,7 @@ package com.company;
  */
 public class CSV {
     private String column;
+    private String column1;
     private String postTile;
     private String originalUrl;
     private String sourceHost;
@@ -12,8 +13,127 @@ public class CSV {
     private String text;
     private String createAt;
     private String productType;
+
+    private String proClassify;
+    private String proOriPrice;
+    private String proCurPrice;
+    private String proPriPrice;
+    private String promotionInfos;
+    private String productColor;
+    private String productDesc;
+    private String stockNum;
+    private String salesNumMonth;
+    private String compName;
+    private String isFavorite;
+    private String productFullName;
     private int cmStarLevel;
     private float satisfaction;
+
+    public String getColumn1() {
+        return column1;
+    }
+
+    public void setColumn1(String column1) {
+        this.column1 = column1;
+    }
+
+    public String getProClassify() {
+        return proClassify;
+    }
+
+    public void setProClassify(String proClassify) {
+        this.proClassify = proClassify;
+    }
+
+    public String getProOriPrice() {
+        return proOriPrice;
+    }
+
+    public void setProOriPrice(String proOriPrice) {
+        this.proOriPrice = proOriPrice;
+    }
+
+    public String getProCurPrice() {
+        return proCurPrice;
+    }
+
+    public void setProCurPrice(String proCurPrice) {
+        this.proCurPrice = proCurPrice;
+    }
+
+    public String getProPriPrice() {
+        return proPriPrice;
+    }
+
+    public void setProPriPrice(String proPriPrice) {
+        this.proPriPrice = proPriPrice;
+    }
+
+    public String getPromotionInfos() {
+        return promotionInfos;
+    }
+
+    public void setPromotionInfos(String promotionInfos) {
+        this.promotionInfos = promotionInfos;
+    }
+
+    public String getProductColor() {
+        return productColor;
+    }
+
+    public void setProductColor(String productColor) {
+        this.productColor = productColor;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }
+
+    public String getStockNum() {
+        return stockNum;
+    }
+
+    public void setStockNum(String stockNum) {
+        this.stockNum = stockNum;
+    }
+
+    public String getSalesNumMonth() {
+        return salesNumMonth;
+    }
+
+    public void setSalesNumMonth(String salesNumMonth) {
+        this.salesNumMonth = salesNumMonth;
+    }
+
+    public String getCompName() {
+        return compName;
+    }
+
+    public void setCompName(String compName) {
+        this.compName = compName;
+    }
+
+    public String getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(String isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
+    public String getProductFullName() {
+        return productFullName;
+    }
+
+    public void setProductFullName(String productFullName) {
+        this.productFullName = productFullName;
+    }
+
+
 
     public String getColumn() {
         return column;

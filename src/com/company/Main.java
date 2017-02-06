@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
+    private static String num="204";
 
     public static void readTxtFile(String filePath) {
         ArrayList list = new ArrayList<CSV>();
@@ -45,7 +46,8 @@ public class Main {
                         String createTime="";
                         //System.out.println(ob);
                         String sourceHost=ob.getString("source_host");
-                        boolean b1 = "item.jd.com".equals(sourceHost) || ("review.suning.com".equals(sourceHost)) || ("detail.tmall.com".equals(sourceHost));
+                        //boolean b1 = "item.jd.com".equals(sourceHost) || ("review.suning.com".equals(sourceHost)) || ("detail.tmall.com".equals(sourceHost));
+                        boolean b1 = "detail.tmall.com".equals(sourceHost);
                         String createAt = ob.getString("created_at");
                         Date date=null;
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -57,7 +59,7 @@ public class Main {
                                 date = sdf.parse(createAt);
                             }else if(createAt.trim().length()==16){
                                 date= sdf1.parse(createAt);
-                            }else if(createAt.trim().length()==10){
+                            }else if(createAt.trim().length()==10||createAt.trim().length()==9){
                                 date= sdf2.parse(createAt);
                             }
                         }else{
@@ -69,50 +71,89 @@ public class Main {
                             createTime=sdf.format(date);
                         }
 
-                        Date date1 = sdf2.parse("2016-11-01");
-                        Date date2 = sdf2.parse("2016-12-31");
-                        boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0);
+                        Date date1 = sdf2.parse("2017-01-05");
+                        Date date2 = sdf2.parse("2017-02-05");
+                        String column1 = ob.getString("column1").trim();
+                        boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0)&&("天猫-旗舰店大量".equals(column1));
                         if (b1&&b2) {
                             CSV csv = new CSV();
                             String column = ob.getString("column");
-                            column=column.replace(',','，');
+                            column=StringUtils.fomart(column);
                             csv.setColumn(column);
 
+                            column1=StringUtils.fomart(column1);
+                            csv.setColumn1(column1);
+
                             String postTile = ob.getString("post_title");
-                            postTile=postTile.replace(',','，');
-                            postTile=postTile.replace('\r',' ');
-                            postTile=postTile.replace('\n',' ');
+                            postTile=StringUtils.fomart(postTile);
                             csv.setPostTile(postTile);
 
                             String originalUrl = ob.getString("original_url");
-                            originalUrl=originalUrl.replace(',','，');
+                            originalUrl=StringUtils.fomart(originalUrl);
                             csv.setOriginalUrl(originalUrl);
 
-                            sourceHost=sourceHost.replace(',','，');
+                            sourceHost=StringUtils.fomart(sourceHost);
                             csv.setSourceHost(sourceHost);
 
                             String screenName = ob.getString("screen_name");
-                            if(screenName==null){
-                                screenName="";
-                            }else{
-                                screenName=screenName.replace(',','，');
-                            }
+                            screenName=StringUtils.fomart(screenName);
                             csv.setScreenName(screenName);
 
-
                             String text = ob.getString("text");
-                            text=text.replace(',','，');
-                            text=text.replace('\r',' ');
-                            text=text.replace('\n',' ');
+                            text=StringUtils.fomart(text);
                             csv.setText(text);
 
                             String productType = ob.getString("productType");
-                            if(productType==null){
-                                productType="";
-                            }else{
-                                productType=productType.replace(',','，');
-                            }
+                            productType=StringUtils.fomart(productType);
                             csv.setProductType(productType);
+
+                            String proClassify = ob.getString("proClassify");
+                            proClassify=StringUtils.fomart(proClassify);
+                            csv.setProClassify(proClassify);
+
+                            String proOriPrice = ob.getString("proOriPrice");
+                            proOriPrice=StringUtils.fomart(proOriPrice);
+                            csv.setProOriPrice(proOriPrice);
+
+                            String proCurPrice = ob.getString("proCurPrice");
+                            proCurPrice=StringUtils.fomart(proCurPrice);
+                            csv.setProCurPrice(proCurPrice);
+
+                            String proPriPrice = ob.getString("proPriPrice");
+                            proPriPrice=StringUtils.fomart(proPriPrice);
+                            csv.setProPriPrice(proPriPrice);
+
+                            String promotionInfos = ob.getString("promotionInfos");
+                            promotionInfos=StringUtils.fomart(promotionInfos);
+                            csv.setPromotionInfos(promotionInfos);
+
+                            String productColor = ob.getString("productColor");
+                            productColor=StringUtils.fomart(productColor);
+                            csv.setProductColor(productColor);
+
+                            String productDesc = ob.getString("productDesc");
+                            productDesc=StringUtils.fomart(productDesc);
+                            csv.setProductDesc(productDesc);
+
+                            String stockNum = ob.getString("stockNum");
+                            stockNum=StringUtils.fomart(stockNum);
+                            csv.setStockNum(stockNum);
+
+                            String salesNumMonth = ob.getString("salesNumMonth");
+                            salesNumMonth=StringUtils.fomart(salesNumMonth);
+                            csv.setSalesNumMonth(salesNumMonth);
+
+                            String compName = ob.getString("compName");
+                            compName=StringUtils.fomart(compName);
+                            csv.setCompName(compName);
+
+                            String isFavorite = ob.getString("isFavorite");
+                            isFavorite=StringUtils.fomart(isFavorite);
+                            csv.setIsFavorite(isFavorite);
+
+                            String productFullName = ob.getString("productFullName");
+                            productFullName=StringUtils.fomart(productFullName);
+                            csv.setProductFullName(productFullName);
 
                             String cmStarLevel = ob.getString("level");
                             if(cmStarLevel!=null){
@@ -138,24 +179,32 @@ public class Main {
             e.printStackTrace();
         }
         ArrayList csvList = new ArrayList<String>();
-        csvList.add("栏目,帖子标题,当页地址,数据来源,用户昵称,内容,发布时间,产品型号,评价所属星级,满意度");
+        csvList.add("栏目,父级栏目,帖子标题,当页地址,数据来源," +
+                "用户昵称,内容,发布时间,产品型号,评价所属星级,满意度,"+
+                "详细商品分类,原价, 现价, 促销价, " +
+                "促销信息, 产品全名,产品颜色,产品描述," +
+                "库存,月成交量,公司名称,收藏");
         for(int i=0;i<list.size();i++){
             CSV csv= (CSV) list.get(i);
-            String s=csv.getColumn()+","+csv.getPostTile()+","+csv.getOriginalUrl()+","+csv.getSourceHost()+","+csv.getScreenName()+","+csv.getText()+","+csv.getCreateAt()+","+csv.getProductType()+","+csv.getCmStarLevel()+","+csv.getSatisfaction();
+            String s=csv.getColumn()+","+csv.getColumn1()+","+csv.getPostTile()+","+csv.getOriginalUrl()+","+csv.getSourceHost()
+                    +","+csv.getScreenName()+","+csv.getText()+","+csv.getCreateAt()+","+csv.getProductType()+","+csv.getCmStarLevel()+","+csv.getSatisfaction()
+                    +","+csv.getProClassify()+","+csv.getProOriPrice()+","+csv.getProCurPrice()+","+csv.getProPriPrice()
+                    +","+csv.getPromotionInfos()+","+csv.getProductFullName()+","+csv.getProductColor()+","+csv.getProductDesc()
+                    +","+csv.getStockNum()+","+csv.getSalesNumMonth()+","+csv.getCompName()+","+csv.getIsFavorite();
             csvList.add(s);
         }
         if(csvList.size()>1){
-            CSVUtils.exportCsv(new File("E:\\file\\40\\40.csv"),csvList);
+            CSVUtils.exportCsv(new File("E:\\file\\"+num+".csv"),csvList);
         }
     }
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\40\\docBak.txt";
+        String filePath = "E:\\file\\docBak"+num+".txt";
         readTxtFile(filePath);
 
        /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Long time=new Long("1482422400000");
+        Long time=new Long("1482422510000");
         Date date=new Date(time);
         String createTime=sdf.format(date);
         System.out.print(createTime);*/
