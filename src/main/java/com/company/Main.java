@@ -181,8 +181,8 @@ public class Main {
         ArrayList csvList = new ArrayList<String>();
         csvList.add("栏目,父级栏目,帖子标题,当页地址,数据来源," +
                 "用户昵称,内容,发布时间,产品型号,评价所属星级,满意度,"+
-                "详细商品分类,原价, 现价, 促销价, " +
-                "促销信息, 产品全名,产品颜色,产品描述," +
+                "详细商品分类,原价,现价,促销价," +
+                "促销信息,产品全名,产品颜色,产品描述," +
                 "库存,月成交量,公司名称,收藏");
         for(int i=0;i<list.size();i++){
             CSV csv= (CSV) list.get(i);
