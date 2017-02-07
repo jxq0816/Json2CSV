@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
-    private static String num="204";
+    private static String num="207";
 
     public static void readTxtFile(String filePath) {
         ArrayList list = new ArrayList<CSV>();
@@ -71,10 +71,11 @@ public class Main {
                             createTime=sdf.format(date);
                         }
 
-                        Date date1 = sdf2.parse("2017-01-05");
-                        Date date2 = sdf2.parse("2017-02-05");
+                       /* Date date1 = sdf2.parse("2016-01-01");
+                        Date date2 = sdf2.parse("2020-01-01");*/
                         String column1 = ob.getString("column1").trim();
-                        boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0)&&("天猫-旗舰店大量".equals(column1));
+                        //boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0)&&("天猫-旗舰店大量".equals(column1));
+                        boolean b2 = ("天猫-旗舰店大量".equals(column1));
                         if (b1&&b2) {
                             CSV csv = new CSV();
                             String column = ob.getString("column");
@@ -200,7 +201,7 @@ public class Main {
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\docBak"+num+".txt";
+        String filePath = "E:\\file\\"+num+".txt";
         readTxtFile(filePath);
 
        /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
