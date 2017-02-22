@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
-    private static String num="207";
+    private static String num="79";
 
     public static void readTxtFile(String filePath) {
         ArrayList list = new ArrayList<CSV>();
@@ -47,7 +47,7 @@ public class Main {
                         //System.out.println(ob);
                         String sourceHost=ob.getString("source_host");
                         //boolean b1 = "item.jd.com".equals(sourceHost) || ("review.suning.com".equals(sourceHost)) || ("detail.tmall.com".equals(sourceHost));
-                        boolean b1 = "detail.tmall.com".equals(sourceHost);
+                        boolean b1 = false;
                         String createAt = ob.getString("created_at");
                         Date date=null;
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -55,11 +55,12 @@ public class Main {
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                         if(createAt.contains("-")){
                             createTime=createAt;
-                            if(createAt.trim().length()==19){
+                            int cnt=cntChar(createAt,':');
+                            if(cnt==2){
                                 date = sdf.parse(createAt);
-                            }else if(createAt.trim().length()==16){
+                            }else if(cnt==1){
                                 date= sdf1.parse(createAt);
-                            }else if(createAt.trim().length()==10||createAt.trim().length()==9){
+                            }else if(cnt==0){
                                 date= sdf2.parse(createAt);
                             }
                         }else{
@@ -71,11 +72,12 @@ public class Main {
                             createTime=sdf.format(date);
                         }
 
-                       /* Date date1 = sdf2.parse("2016-01-01");
-                        Date date2 = sdf2.parse("2020-01-01");*/
+                        Date date1 = sdf2.parse("2017-02-06");
+                        Date date2 = sdf2.parse("2020-01-01");
                         String column1 = ob.getString("column1").trim();
-                        //boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0)&&("天猫-旗舰店大量".equals(column1));
-                        boolean b2 = ("天猫-旗舰店大量".equals(column1));
+                        b1="天猫-旗舰店大量".equals(column1);
+                        boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0);
+                        //boolean b2 = true;
                         if (b1&&b2) {
                             CSV csv = new CSV();
                             String column = ob.getString("column");
@@ -201,13 +203,20 @@ public class Main {
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\"+num+".txt";
+        String filePath = "E:\\file\\"+num+"\\docBak.txt";
         readTxtFile(filePath);
+       /* int cnt=cntChar("2017-01-02",':');
+        System.out.print(cnt);*/
+    }
+    public static int cntChar(String str,char a) {
 
-       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Long time=new Long("1482422510000");
-        Date date=new Date(time);
-        String createTime=sdf.format(date);
-        System.out.print(createTime);*/
+        int count=0;
+        char[] array = str.toCharArray();
+        for(int i=0;i<str.length();i++){
+            if(array[i]==a){
+                count=count+1;
+            }
+        }
+        return count;
     }
 }
