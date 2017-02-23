@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
-    private static String num="79";
+    private static String num="232" ;
 
     public static void readTxtFile(String filePath) {
         ArrayList list = new ArrayList<CSV>();
@@ -167,7 +167,13 @@ public class Main {
                                 csv.setSatisfaction(Float.parseFloat(satisfaction));
                             }
                             csv.setCreateAt(createTime);
+
+                            String iniPrice = ob.getString("pro_init_price");
+                            iniPrice=StringUtils.fomart(iniPrice);
+                            csv.setIniPrice(iniPrice);
+
                             list.add(csv);
+
                         }
                     }
                 }
@@ -186,14 +192,14 @@ public class Main {
                 "用户昵称,内容,发布时间,产品型号,评价所属星级,满意度,"+
                 "详细商品分类,原价,现价,促销价," +
                 "促销信息,产品全名,产品颜色,产品描述," +
-                "库存,月成交量,公司名称,收藏");
+                "库存,月成交量,公司名称,收藏,原始价格");
         for(int i=0;i<list.size();i++){
             CSV csv= (CSV) list.get(i);
             String s=csv.getColumn()+","+csv.getColumn1()+","+csv.getPostTile()+","+csv.getOriginalUrl()+","+csv.getSourceHost()
                     +","+csv.getScreenName()+","+csv.getText()+","+csv.getCreateAt()+","+csv.getProductType()+","+csv.getCmStarLevel()+","+csv.getSatisfaction()
                     +","+csv.getProClassify()+","+csv.getProOriPrice()+","+csv.getProCurPrice()+","+csv.getProPriPrice()
                     +","+csv.getPromotionInfos()+","+csv.getProductFullName()+","+csv.getProductColor()+","+csv.getProductDesc()
-                    +","+csv.getStockNum()+","+csv.getSalesNumMonth()+","+csv.getCompName()+","+csv.getIsFavorite();
+                    +","+csv.getStockNum()+","+csv.getSalesNumMonth()+","+csv.getCompName()+","+csv.getIsFavorite()+","+csv.getIniPrice();
             csvList.add(s);
         }
         if(csvList.size()>1){

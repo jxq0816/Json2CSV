@@ -18,6 +18,7 @@ public class CSV {
     private String proOriPrice;
     private String proCurPrice;
     private String proPriPrice;
+    private String iniPrice;
     private String promotionInfos;
     private String productColor;
     private String productDesc;
@@ -59,6 +60,14 @@ public class CSV {
 
     public void setProCurPrice(String proCurPrice) {
         this.proCurPrice = proCurPrice;
+    }
+
+    public String getIniPrice() {
+        return iniPrice;
+    }
+
+    public void setIniPrice(String iniPrice) {
+        this.proCurPrice = iniPrice;
     }
 
     public String getProPriPrice() {
