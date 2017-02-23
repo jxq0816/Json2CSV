@@ -27,9 +27,7 @@ public class Main {
 
             if (file.isFile() && file.exists()) { //判断文件是否存在
 
-                InputStreamReader read = new InputStreamReader(
-
-                        new FileInputStream(file), encoding);//考虑到编码格式
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);//考虑到编码格式
 
                 BufferedReader bufferedReader = new BufferedReader(read);
 
@@ -43,19 +41,15 @@ public class Main {
                     Iterator<Object> it = array.iterator();
                     while (it.hasNext()) {
                         JSONObject ob = (JSONObject) it.next();
-                        String createTime="";
-                        //System.out.println(ob);
-                        String sourceHost=ob.getString("source_host");
-                        //boolean b1 = "item.jd.com".equals(sourceHost) || ("review.suning.com".equals(sourceHost)) || ("detail.tmall.com".equals(sourceHost));
-                        boolean b1 = false;
-                        String createAt = ob.getString("created_at");
-                        Date date=null;
+                        String createTime;
+                        String createAt = ob.getString("created_at");//从JSON获取创建时间，时间格式变化莫测，需要根据不同情况转换为Date类型
+                        Date date=null;//创建时间的日期格式
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                        if(createAt.contains("-")){
+                        if(createAt.contains("-")){//日期格式
                             createTime=createAt;
-                            int cnt=cntChar(createAt,':');
+                            int cnt=StringUtils.cntChar(createAt,':');
                             if(cnt==2){
                                 date = sdf.parse(createAt);
                             }else if(cnt==1){
@@ -63,7 +57,7 @@ public class Main {
                             }else if(cnt==0){
                                 date= sdf2.parse(createAt);
                             }
-                        }else{
+                        }else{//时间戳
                             if(createAt.length()==10){
                                 createAt+="000";
                             }
@@ -75,8 +69,10 @@ public class Main {
                         Date date1 = sdf2.parse("2017-02-06");
                         Date date2 = sdf2.parse("2020-01-01");
                         String column1 = ob.getString("column1").trim();
-                        b1="天猫-旗舰店大量".equals(column1);
-                        boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0);
+                        String sourceHost=ob.getString("source_host");
+                        //boolean b1 = "item.jd.com".equals(sourceHost) || ("review.suning.com".equals(sourceHost)) || ("detail.tmall.com".equals(sourceHost));
+                        boolean b1 ="天猫-旗舰店大量".equals(column1);//栏目判断
+                        boolean b2 =  date.compareTo(date1)>=0 && (date.compareTo(date2)<=0);//时间判断
                         //boolean b2 = true;
                         if (b1&&b2) {
                             CSV csv = new CSV();
@@ -213,16 +209,5 @@ public class Main {
         readTxtFile(filePath);
        /* int cnt=cntChar("2017-01-02",':');
         System.out.print(cnt);*/
-    }
-    public static int cntChar(String str,char a) {
-
-        int count=0;
-        char[] array = str.toCharArray();
-        for(int i=0;i<str.length();i++){
-            if(array[i]==a){
-                count=count+1;
-            }
-        }
-        return count;
     }
 }
