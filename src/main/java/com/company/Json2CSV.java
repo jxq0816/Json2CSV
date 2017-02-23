@@ -14,10 +14,8 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Main {
-    private static String num="232" ;
-
-    public static void readTxtFile(String filePath) {
+public class Json2CSV {
+    public static void readTxtFile(String filePath,String fileName) {
         ArrayList list = new ArrayList<CSV>();
         try {
 
@@ -165,11 +163,14 @@ public class Main {
                             csv.setCreateAt(createTime);
 
                             String iniPrice = ob.getString("pro_init_price");
-                            iniPrice=StringUtils.fomart(iniPrice);
+                            if(iniPrice!=null){
+                                iniPrice=iniPrice.trim();
+                            }
                             csv.setIniPrice(iniPrice);
 
-                            list.add(csv);
-
+                            if(StringUtils.isNoneBlank(iniPrice)&&("0".equals(iniPrice)==false)) {
+                                list.add(csv);
+                            }
                         }
                     }
                 }
@@ -199,15 +200,13 @@ public class Main {
             csvList.add(s);
         }
         if(csvList.size()>1){
-            CSVUtils.exportCsv(new File("E:\\file\\"+num+".csv"),csvList);
+            CSVUtils.exportCsv(new File("E:\\file\\csv\\"+fileName+".csv"),csvList);
         }
     }
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\"+num+"\\docBak.txt";
-        readTxtFile(filePath);
-       /* int cnt=cntChar("2017-01-02",':');
-        System.out.print(cnt);*/
+        String filePath = "E:\\file\\207\\docBak.txt";
+        readTxtFile(filePath,"297");
     }
 }

@@ -13,7 +13,6 @@ public class CSV {
     private String text;
     private String createAt;
     private String productType;
-
     private String proClassify;
     private String proOriPrice;
     private String proCurPrice;
@@ -29,6 +28,9 @@ public class CSV {
     private String productFullName;
     private int cmStarLevel;
     private float satisfaction;
+
+    public CSV() {
+    }
 
     public String getColumn1() {
         return column1;
@@ -67,7 +69,7 @@ public class CSV {
     }
 
     public void setIniPrice(String iniPrice) {
-        this.proCurPrice = iniPrice;
+        this.iniPrice = iniPrice;
     }
 
     public String getProPriPrice() {

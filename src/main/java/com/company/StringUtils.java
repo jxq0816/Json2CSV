@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by boxiaotong on 2017/1/11.
  */
-public class StringUtils {
+public class StringUtils extends org.apache.commons.lang3.StringUtils{
 
     public static String fomart(String s) {
         if(s==null){
