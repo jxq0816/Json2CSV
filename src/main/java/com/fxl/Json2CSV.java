@@ -3,6 +3,8 @@ package com.fxl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.util.CSVUtils;
+import com.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -128,6 +130,42 @@ public class Json2CSV {
                             nowLocation= StringUtils.fomart(nowLocation);
                             csv.setNowLocation(nowLocation);
 
+                            String workTimeLong = ob.getString("workTimeLong");
+                            workTimeLong= StringUtils.fomart(workTimeLong);
+                            csv.setWorkTimeLong(workTimeLong);
+
+                            String compName = ob.getString("compName");
+                            compName= StringUtils.fomart(compName);
+                            csv.setCompName(compName);
+
+                            String apdRepNum = ob.getString("apdRepNum");
+                            apdRepNum= StringUtils.fomart(apdRepNum);
+                            csv.setApdRepNum(apdRepNum);
+
+                            String godRepNum = ob.getString("godRepNum");
+                            godRepNum= StringUtils.fomart(godRepNum);
+                            csv.setGodRepNum(godRepNum);
+
+                            String floor = ob.getString("floor");
+                            floor= StringUtils.fomart(floor);
+                            csv.setFloor(floor);
+
+                            String paragraphId = ob.getString("paragraphid");
+                            paragraphId= StringUtils.fomart(paragraphId);
+                            csv.setParagraphId(paragraphId);
+
+                            String midRepPer = ob.getString("midRepPer");
+                            midRepPer= StringUtils.fomart(midRepPer);
+                            csv.setMidRepPer(midRepPer);
+
+                            String praisesCount = ob.getString("praises_count");
+                            praisesCount= StringUtils.fomart(praisesCount);
+                            csv.setPraisesCount(praisesCount);
+
+                            String compAddress = ob.getString("compAddress");
+                            compAddress= StringUtils.fomart(compAddress);
+                            csv.setCompAddress(compAddress);
+
                             list.add(csv);
                         }
                     }
@@ -149,7 +187,9 @@ public class Json2CSV {
                     ","+csv.getSourceHost()+","+csv.getScreenName()+","+csv.getProductType()+","+csv.getPageUrl()+csv.getGodRepPer()+
                     ","+csv.getLogisticsScore()+","+csv.getCommentTags()+","+csv.getMidRepNum()+","+csv.getReadCount()+","+csv.getWosRepNum()+
                     ","+csv.getProCurPrice()+","+csv.getPgText()+","+csv.getWosRepPer()+","+csv.getPurchDate()+","+csv.getServiceScore()+
-                    ","+csv.getSource()+","+csv.getNowLocation();
+                    ","+csv.getSource()+","+csv.getNowLocation()+","+csv.getWorkTimeLong()+","+csv.getCompName()+","+csv.getApdRepNum()+
+                    ","+csv.getGodRepNum()+","+csv.getFloor()+","+csv.getParagraphId()+","+csv.getMidRepPer()+csv.getPraisesCount()+
+                    ","+csv.getCompAddress();
             csvList.add(s);
         }
         if(csvList.size()>1){
@@ -159,7 +199,7 @@ public class Json2CSV {
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\txt\\1\\docBak1.txt";
+        String filePath = "E:\\file\\txt\\1\\docBak.txt";
         readTxtFile(filePath,"1");
     }
 }

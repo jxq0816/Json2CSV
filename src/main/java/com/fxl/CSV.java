@@ -30,7 +30,89 @@ public class CSV {
 
     private String source;
     private String nowLocation;
+    private String workTimeLong;
+    private String compName;
+    private String apdRepNum;
 
+    private String godRepNum;
+    private String floor;
+    private String paragraphId;
+    private String midRepPer;
+    private String praisesCount;
+
+    private String compAddress;
+
+    public String getWorkTimeLong() {
+        return workTimeLong;
+    }
+
+    public void setWorkTimeLong(String workTimeLong) {
+        this.workTimeLong = workTimeLong;
+    }
+
+    public String getCompName() {
+        return compName;
+    }
+
+    public void setCompName(String compName) {
+        this.compName = compName;
+    }
+
+    public String getApdRepNum() {
+        return apdRepNum;
+    }
+
+    public void setApdRepNum(String apdRepNum) {
+        this.apdRepNum = apdRepNum;
+    }
+
+    public String getGodRepNum() {
+        return godRepNum;
+    }
+
+    public void setGodRepNum(String godRepNum) {
+        this.godRepNum = godRepNum;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getParagraphId() {
+        return paragraphId;
+    }
+
+    public void setParagraphId(String paragraphId) {
+        this.paragraphId = paragraphId;
+    }
+
+    public String getMidRepPer() {
+        return midRepPer;
+    }
+
+    public void setMidRepPer(String midRepPer) {
+        this.midRepPer = midRepPer;
+    }
+
+    public String getPraisesCount() {
+        return praisesCount;
+    }
+
+    public void setPraisesCount(String praisesCount) {
+        this.praisesCount = praisesCount;
+    }
+
+    public String getCompAddress() {
+        return compAddress;
+    }
+
+    public void setCompAddress(String compAddress) {
+        this.compAddress = compAddress;
+    }
 
     public CSV() {
     }

@@ -1,4 +1,6 @@
-package com.company;
+package com.util;
+
+import com.company.Json2CSV;
 
 import java.io.File;
 

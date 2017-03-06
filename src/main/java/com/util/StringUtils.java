@@ -1,4 +1,4 @@
-package com.fxl;
+package com.util;
 
 /**
  * Created by boxiaotong on 2017/1/11.

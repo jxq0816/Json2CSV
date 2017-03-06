@@ -2,6 +2,8 @@ package com.company;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.util.CSVUtils;
+import com.util.StringUtils;
 
 import java.io.BufferedReader;
 
@@ -47,7 +49,7 @@ public class Json2CSV {
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                         if(createAt.contains("-")){//日期格式
                             createTime=createAt;
-                            int cnt=StringUtils.cntChar(createAt,':');
+                            int cnt= StringUtils.cntChar(createAt,':');
                             if(cnt==2){
                                 date = sdf.parse(createAt);
                             }else if(cnt==1){
