@@ -66,7 +66,7 @@ public class Json2CSV {
                             createTime=sdf.format(date);
                         }
 
-                        Date date1 = sdf2.parse("2017-02-06");
+                        Date date1 = sdf2.parse("2017-02-25");
                         Date date2 = sdf2.parse("2020-01-01");
                         String column1 = ob.getString("column1").trim();
                         String sourceHost=ob.getString("source_host");
