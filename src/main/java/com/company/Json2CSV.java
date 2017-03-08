@@ -34,6 +34,7 @@ public class Json2CSV {
                 String lineTxt = null;
 
                 while ((lineTxt=bufferedReader.readLine()) != null) {
+
                     JSONObject object = JSON.parseObject(lineTxt);
                     //System.out.println(object);
                     JSONArray array = (JSONArray) object.get("datas");
@@ -66,7 +67,7 @@ public class Json2CSV {
                             createTime=sdf.format(date);
                         }
 
-                        Date date1 = sdf2.parse("2017-02-25");
+                        Date date1 = sdf2.parse("2017-02-23");
                         Date date2 = sdf2.parse("2020-01-01");
                         String column1 = ob.getString("column1").trim();
                         String sourceHost=ob.getString("source_host");
@@ -169,10 +170,10 @@ public class Json2CSV {
                                 iniPrice=iniPrice.trim();
                             }
                             csv.setIniPrice(iniPrice);
+                            list.add(csv);
+                            /*if(StringUtils.isNoneBlank(iniPrice)&&("0".equals(iniPrice)==false)) {
 
-                            if(StringUtils.isNoneBlank(iniPrice)&&("0".equals(iniPrice)==false)) {
-                                list.add(csv);
-                            }
+                            }*/
                         }
                     }
                 }
@@ -208,7 +209,7 @@ public class Json2CSV {
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\207\\docBak.txt";
-        readTxtFile(filePath,"297");
+        String filePath = "E:\\file\\txt\\cache02\\cache_data\\wrapper256\\docBak.txt";
+        readTxtFile(filePath,"256");
     }
 }
