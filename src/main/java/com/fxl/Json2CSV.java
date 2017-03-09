@@ -181,6 +181,14 @@ public class Json2CSV {
             e.printStackTrace();
         }
         ArrayList csvList = new ArrayList<String>();
+        csvList.add("column,column1,createdAt,postTitle,originalUrl," +
+                "sourceHost,screenName,productType,pageUrl,godRepPer," +
+                "logisticsScore,commentTags,midRepNum,readCount,wosRepNum,"+
+                "proCurPrice,pgText,wosRepPer,purchDate,serviceScore,"+
+                "source,nowLocation,workTimeLong,compName,apdRepNum,"+
+                "godRepNum,floor,paragraphId,midRepPer,praisesCount,"+
+                "compAddress"
+        );
         for(int i=0;i<list.size();i++){
             CSV csv= (CSV) list.get(i);
             String s=csv.getColumn()+","+csv.getColumn1()+","+csv.getCreatedAt()+","+csv.getPostTitle()+","+csv.getOriginalUrl()+
@@ -188,7 +196,7 @@ public class Json2CSV {
                     ","+csv.getLogisticsScore()+","+csv.getCommentTags()+","+csv.getMidRepNum()+","+csv.getReadCount()+","+csv.getWosRepNum()+
                     ","+csv.getProCurPrice()+","+csv.getPgText()+","+csv.getWosRepPer()+","+csv.getPurchDate()+","+csv.getServiceScore()+
                     ","+csv.getSource()+","+csv.getNowLocation()+","+csv.getWorkTimeLong()+","+csv.getCompName()+","+csv.getApdRepNum()+
-                    ","+csv.getGodRepNum()+","+csv.getFloor()+","+csv.getParagraphId()+","+csv.getMidRepPer()+csv.getPraisesCount()+
+                    ","+csv.getGodRepNum()+","+csv.getFloor()+","+csv.getParagraphId()+","+csv.getMidRepPer()+","+csv.getPraisesCount()+
                     ","+csv.getCompAddress();
             csvList.add(s);
         }
@@ -199,7 +207,7 @@ public class Json2CSV {
 
     public static void main(String argv[]) {
 
-        String filePath = "E:\\file\\txt\\1\\docBak.txt";
+        String filePath = "E:\\file\\txt\\docBak.txt";
         readTxtFile(filePath,"1");
     }
 }
